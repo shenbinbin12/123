@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GPS ESP32-C3 固件烧录</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      max-width: 640px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      line-height: 1.6;
+    }
+    h1 { font-size: 1.4rem; }
+    .note {
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>GPS ESP32-C3 固件烧录</h1>
+  <p>请使用 Chrome 或 Edge，USB 连接开发板后点击下方按钮。</p>
+  <div class="note">
+    <strong>提示：</strong>若无法连接，按住 BOOT 键再插入 USB，然后重新点击安装。
+  </div>
+  <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js"></script>
+  <esp-web-install-button manifest="manifest.json">
+    <button slot="activate" style="font-size:1.1rem;padding:0.75rem 1.5rem;cursor:pointer;">
+      安装 GPS 固件
+    </button>
+    <span slot="unsupported">请改用 Chrome 或 Edge 浏览器。</span>
+  </esp-web-install-button>
+</body>
+</html>
