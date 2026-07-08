@@ -1,28 +1,28 @@
-# ESP32-C3 GPS Firmware
+# GPS ESP32-C3 Firmware
 
-ESP32-C3 WROOM-02 firmware for web flashing.
+ESP32-C3 GPS 固件，支持浏览器在线烧录（与 PlatformIO 本地 3 文件烧录方式一致）。
 
-## Web flash (recommended)
+## 在线烧录（推荐）
 
-Use the merged factory image — flash from address `0x0`:
+1. 打开 GitHub Pages：**https://shenbinbin12.github.io/123/**
+2. 使用 Chrome 或 Edge，USB 连接开发板
+3. 点击「安装 GPS 固件」，首次安装建议勾选擦除 Flash
 
-- **File:** `merged-firmware.bin`
-- **Flash link:** https://adam-weber.github.io/esp-webflash-toolkit/examples/hosted/?name=GPS-ESP32C3&bin=https://github.com/shenbinbin12/123/raw/main/merged-firmware.bin&chip=esp32-c3
+若 Pages 未开启，请到仓库 Settings → Pages → Branch 选 `main` / `(root)`。
 
-Browser: Chrome or Edge. Connect USB, click Connect, then Flash.
+## 烧录文件（与 PlatformIO 相同）
 
-## Files
+| 文件 | Flash 地址 |
+|------|------------|
+| `bootloader.bin` | `0x0` |
+| `partitions.bin` | `0x8000` |
+| `firmware.bin` | `0x10000` |
 
-| File | Purpose |
-|------|---------|
-| `merged-firmware.bin` | Factory image (bootloader + partitions + boot_app0 + app) — **use for online flash** |
-| `firmware.bin` | App only (`0x10000`) — not for standalone web flash |
-| `bootloader.bin` | Bootloader segment |
-| `partitions.bin` | Partition table |
-| `boot_app0.bin` | OTA data initial |
+## 本地烧录
 
-## Build info
+使用 PlatformIO Upload，或手动用 esptool 按上表地址写入上述 3 个文件。
 
-- Board: ESP32-C3-DevKitM-1
-- Flash: 4MB, QIO 80MHz
-- Merged with esptool from PlatformIO build output
+## 说明
+
+- 不要使用 `merged-firmware.bin`（merge 会修改 bootloader 头，可能导致启动失败）
+- 串口监视器波特率：230400
